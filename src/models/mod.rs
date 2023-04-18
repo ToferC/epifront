@@ -1,6 +1,4 @@
-mod user;
 mod email;
-mod authentication;
 
 
 pub use user::*;

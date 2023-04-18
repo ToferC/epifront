@@ -9,7 +9,6 @@ use sendgrid::SGClient;
 
 use epifront::handlers;
 use epifront::AppData;
-use epifront::database;
 
 use fluent_templates::{FluentLoader, static_loader};
 // https://lib.rs/crates/fluent-templates

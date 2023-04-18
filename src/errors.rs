@@ -1,7 +1,6 @@
 
 use actix_web::http::StatusCode;
 use actix_web::{HttpResponse, ResponseError};
-use diesel::result::Error as DieselError;
 use serde::Deserialize;
 use std::fmt;
 
@@ -23,20 +22,6 @@ impl CustomError {
 impl fmt::Display for CustomError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.write_str(&format!("{} = {}", self.error_message, self.error_status_code))
-    }
-}
-
-impl From<DieselError> for CustomError {
-    fn from(error: DieselError) -> CustomError {
-        match error {
-            DieselError::DatabaseError(_, err) => {
-                CustomError::new(409, err.message().to_string())
-            },
-            DieselError::NotFound => {
-                CustomError::new(408, "Record not found".to_string())
-            }
-            err => CustomError::new(500, format!("Unknown Diesel Error: {}", err)),
-        }
     }
 }
 

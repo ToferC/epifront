@@ -7,10 +7,7 @@ use actix_session::{Session, UserSession};
 use actix_identity::{Identity};
 use serde::{Deserialize};
 
-use crate::{AppData, generate_basic_context, generate_email_context, extract_identity_data, APP_NAME};
-use crate::models::{User, verify, UserData, EmailVerification, 
-    InsertableVerification, Email, PasswordResetToken, 
-    InsertablePasswordResetToken};
+use crate::{AppData, generate_basic_context, extract_identity_data, APP_NAME};
 
 use super::EmailForm;
 
