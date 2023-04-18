@@ -20,6 +20,7 @@ actix-web-static-files = "3.0.5"
 # database and data
 lazy_static = "1.4"
 shrinkwraprs = "0.3"
+graphql_client = "0.12.0"
 
 dotenv = "0.15.0"
 chrono = {version = "0.4.19", features = ["serde"] }
