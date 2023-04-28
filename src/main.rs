@@ -9,6 +9,7 @@ use sendgrid::SGClient;
 
 use epifront::handlers;
 use epifront::AppData;
+use crate::handlers::get_people_by_name;
 
 use fluent_templates::{FluentLoader, static_loader};
 // https://lib.rs/crates/fluent-templates
@@ -41,10 +42,14 @@ async fn main() -> std::io::Result<()> {
     let (host, port) = if environment == "production" {
         (env::var("HOST").unwrap(), env::var("PORT").unwrap())
     } else {
-        (String::from("127.0.0.1"), String::from("8080"))
+        (String::from("127.0.0.1"), String::from("8088"))
     };
 
     let cookie_secret_key = env::var("COOKIE_SECRET_KEY").expect("Unable to find secret key");
+
+    let r = get_people_by_name("emi".to_string());
+
+    println!("QUERY RESULT: {:?}", r);
 
     HttpServer::new(move || {
         let mut tera = Tera::new(
