@@ -15,6 +15,9 @@ use crate::handlers::{
     internal_server_error,
     not_found,
 
+    // person
+    person_by_name,
+
     
 
 };
@@ -22,6 +25,10 @@ use crate::handlers::{
 pub fn configure_services(config: &mut web::ServiceConfig) {
     config.service(index);
     config.service(raw_index);
+
+    // person
+    config.service(person_by_name);
+    
     //config.service(about);
     config.service(toggle_language);
     config.service(toggle_language_index);

@@ -145,6 +145,10 @@ password-reset-received = We received a request to reset your password on { -app
 if-you-instructions = If this was you, You can reset your password through the following link.
 from-login-screen = from the log in screen.
 
+## Person
+person-index = People
+person-by-name = Person by Name
+
 ## Errors
 
 ## 404

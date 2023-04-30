@@ -1,16 +1,16 @@
 query PersonByName($name:String!) {
-  personByName(name:$name) {
+  personByName(name: $name) {
+    givenName
     familyName
-   	givenName
     activeRoles {
-      startDate
       hrGroup
       hrLevel
+      titleEnglish
     }
-    inactiveRoles {
-      startDate
-      hrGroup
-      hrLevel
+    capabilities {
+      nameEn
+      domain
+      validatedLevel
     }
   }
 }

@@ -1,19 +1,17 @@
 use graphql_client::{GraphQLQuery, Response};
+use serde::{Serialize, Deserialize};
 use std::error::Error;
 use reqwest;
 
-use self::person_by_name::ResponseData;
-
-
-#[derive(GraphQLQuery)]
+#[derive(GraphQLQuery, Serialize, Deserialize)]
 #[graphql(
     schema_path = "schema.graphql",
     query_path = "queries/person_by_name.graphql",
-    response_derives = "Debug"
+    response_derives = "Debug, Serialize, PartialEq"
 )]
 pub struct PersonByName;
 
-pub fn get_people_by_name(name: String) -> Result<(), Box<dyn Error>> {
+pub fn get_people_by_name(name: String) -> Result<person_by_name::ResponseData, Box<dyn Error>> {
 
     let request_body = PersonByName::build_query(person_by_name::Variables {
         name,
@@ -32,10 +30,9 @@ pub fn get_people_by_name(name: String) -> Result<(), Box<dyn Error>> {
         }
     };
 
-    let response_data: person_by_name::ResponseData = response_body.data.expect("missing response data");
-
-    println!("{:?}", &response_data);
+    let response = response_body.data
+        .expect("missing response data");
 
     // serve HTML page with response_body
-    Ok(())
+    Ok(response)
 }

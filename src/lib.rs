@@ -1,5 +1,6 @@
 pub mod models;
 pub mod handlers;
+pub mod graphql;
 pub mod errors;
 
 use actix_web::Error;
@@ -15,11 +16,12 @@ const APP_NAME: &str = "Epifront";
 #[derive(Clone, Debug)]
 pub struct AppData {
     pub tmpl: Tera,
+    pub bearer: String,
 }
 
 /// Generate context, session_user, role and node_names from id and lang
 pub fn generate_basic_context(
-    id: Identity,
+    _id: Identity,
     lang: &str,
     path: &str,
 ) -> (Context, String, String, String) 
@@ -27,7 +29,7 @@ pub fn generate_basic_context(
     let mut ctx = Context::new();
 
     // Get session data and add to context
-    let (session_user, role) = ("ghjkg", "ghjkgjk");
+    let (session_user, role) = ("default", "default");
     ctx.insert("session_user", &session_user);
     ctx.insert("role", &role);
 

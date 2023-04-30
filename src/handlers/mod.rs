@@ -5,7 +5,7 @@ pub mod forms;
 pub mod utility;
 pub mod errors;
 pub mod email;
-pub mod query;
+pub mod person;
 
 pub use base::{index, raw_index};
 pub use routes::configure_services;
@@ -14,4 +14,4 @@ pub use forms::*;
 pub use utility::*;
 pub use email::*;
 pub use errors::*;
-pub use query::*;
+pub use person::*;

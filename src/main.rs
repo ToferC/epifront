@@ -9,7 +9,7 @@ use sendgrid::SGClient;
 
 use epifront::handlers;
 use epifront::AppData;
-use crate::handlers::get_people_by_name;
+use epifront::graphql::get_people_by_name;
 
 use fluent_templates::{FluentLoader, static_loader};
 // https://lib.rs/crates/fluent-templates
@@ -61,6 +61,7 @@ async fn main() -> std::io::Result<()> {
 
         let data = AppData {
             tmpl: tera,
+            bearer: String::from(""),
         };
 
         let generated = generate();
