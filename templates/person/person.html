@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>{{ fluent(key="person", lang=lang )}}</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="col m-md-2 m-1">
+
+    <h1>{{ person.givenName }} {{ person.familyName }}</h1>
+        
+    <h3>Roles</h3>
+    {% for role in person.activeRoles %}
+        <li><strong>{{ role.titleEnglish }}</strong> - {{ role.hrGroup }}-{{ role.hrLevel }}</li>
+    {% endfor %}
+    <h3>Capabilities</h3>
+    {% for cap in person.capabilities %}
+        <li>{{ cap.nameEn }} ({{ cap.domain }}) - {{ cap.validatedLevel }}</li>
+    {% endfor %}
+    <hr>
+
+</div>
+
+
+
+{% endblock content %}

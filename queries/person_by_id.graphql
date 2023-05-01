@@ -1,0 +1,31 @@
+query PersonById($id:UUID!) {
+  personById(id:$id) {
+    id
+    familyName
+   	givenName
+    phone
+    email
+    workAddress
+    postalCode
+    capabilities {
+      nameEn
+      domain
+      validatedLevel
+    }
+    activeRoles {
+        titleEnglish
+      startDate
+      hrGroup
+      hrLevel
+    }
+    findMatches {
+      titleEnglish
+      hrGroup
+      hrLevel
+      requirements {
+        nameEn
+        requiredLevel
+      }
+    }
+  }
+}

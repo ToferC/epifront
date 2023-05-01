@@ -1,5 +1,6 @@
 query PersonByName($name:String!) {
   personByName(name: $name) {
+    id
     givenName
     familyName
     activeRoles {

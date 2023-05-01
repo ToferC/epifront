@@ -47,9 +47,8 @@ async fn main() -> std::io::Result<()> {
 
     let cookie_secret_key = env::var("COOKIE_SECRET_KEY").expect("Unable to find secret key");
 
-    let r = get_people_by_name("emi".to_string());
-
-    println!("QUERY RESULT: {:?}", r);
+    //let r = get_people_by_name("emi".to_string());
+    //println!("QUERY RESULT: {:?}", r);
 
     HttpServer::new(move || {
         let mut tera = Tera::new(

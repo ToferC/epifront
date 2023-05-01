@@ -16,6 +16,7 @@ use crate::handlers::{
     not_found,
 
     // person
+    person_by_id,
     person_by_name,
 
     
@@ -27,6 +28,7 @@ pub fn configure_services(config: &mut web::ServiceConfig) {
     config.service(raw_index);
 
     // person
+    config.service(person_by_id);
     config.service(person_by_name);
     
     //config.service(about);
