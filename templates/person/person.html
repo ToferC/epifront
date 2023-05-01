@@ -9,14 +9,39 @@
 <div class="col m-md-2 m-1">
 
     <h1>{{ person.givenName }} {{ person.familyName }}</h1>
-        
-    <h3>Roles</h3>
+
+    <h3>Contact Info</h3>
+    <li>{{ person.workAddress }}</li>
+    <li>{{ person.postalCode }}</li>
+    <li>{{ person.email }}</li>
+    <li>{{ person.phone }}</li>
+    
+    <hr>
+
+    <h3>Role:
     {% for role in person.activeRoles %}
+        {{ role.titleEnglish }} - {{ role.hrGroup }}-{{ role.hrLevel }}
+    {% endfor %}</h3>
+
+    <hr>
+    <h4>Past Roles</h4>
+    {% for role in person.inactiveRoles %}
         <li><strong>{{ role.titleEnglish }}</strong> - {{ role.hrGroup }}-{{ role.hrLevel }}</li>
     {% endfor %}
+
+    <hr>
     <h3>Capabilities</h3>
     {% for cap in person.capabilities %}
         <li>{{ cap.nameEn }} ({{ cap.domain }}) - {{ cap.validatedLevel }}</li>
+    {% endfor %}
+
+    <hr>
+    <h3>Potential Job Matches</h3>
+    {% for match in person.findMatches %}
+        <li>{{ match.titleEnglish }} ({{ match.hrGroup }})-{{ match.hrLevel }}</li>
+        {% for req in match.requirements %}
+            <li>{{ req.nameEn }} ({{ req.domain }}) - {{ req.requiredLevel }}</li>
+        {% endfor %}
     {% endfor %}
     <hr>
 

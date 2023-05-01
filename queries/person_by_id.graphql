@@ -18,12 +18,19 @@ query PersonById($id:UUID!) {
       hrGroup
       hrLevel
     }
+    inactiveRoles {
+         titleEnglish
+      startDate
+      hrGroup
+      hrLevel
+    }
     findMatches {
       titleEnglish
       hrGroup
       hrLevel
       requirements {
         nameEn
+        domain
         requiredLevel
       }
     }

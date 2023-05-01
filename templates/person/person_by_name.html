@@ -12,11 +12,12 @@
     
         {% for person in people %}
             <h2><a href="/{{lang}}/person/{{person.id}}">{{ person.givenName }} {{ person.familyName }}</a></h2>
-            
+            <br>
             <h3>Roles</h3>
             {% for role in person.activeRoles %}
                 <li><strong>{{ role.titleEnglish }}</strong> - {{ role.hrGroup }}-{{ role.hrLevel }}</li>
             {% endfor %}
+            <br>
             <h3>Capabilities</h3>
             {% for cap in person.capabilities %}
                 <li>{{ cap.nameEn }} ({{ cap.domain }}) - {{ cap.validatedLevel }}</li>
