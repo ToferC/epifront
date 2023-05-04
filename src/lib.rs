@@ -3,7 +3,8 @@ pub mod handlers;
 pub mod graphql;
 pub mod errors;
 
-use actix_web::Error;
+use actix_web::web::Data;
+use actix_web::{Error, App};
 use tera::{Tera, Context};
 use actix_identity::Identity;
 use actix_session::Session;

@@ -2,8 +2,8 @@ use serde::{Deserialize};
 
 #[derive(Deserialize, Debug)]
 pub struct LoginForm {
-    email: String,
-    password: String,
+    pub email: String,
+    pub password: String,
 }
 
 #[derive(Deserialize, Debug)]

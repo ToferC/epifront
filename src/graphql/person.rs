@@ -13,14 +13,18 @@ type UUID = String;
 )]
 pub struct PersonByName;
 
-pub fn get_people_by_name(name: String) -> Result<person_by_name::ResponseData, Box<dyn Error>> {
+pub fn get_people_by_name(name: String, bearer: String) -> Result<person_by_name::ResponseData, Box<dyn Error>> {
 
     let request_body = PersonByName::build_query(person_by_name::Variables {
         name,
     });
 
     let client = reqwest::blocking::Client::new();
-    let mut res = client.post("http://127.0.0.1:8080/graphql").json(&request_body).send()?;
+    let res = client
+        .post("http://127.0.0.1:8080/graphql")
+        .header("Bearer", bearer)
+        .json(&request_body)
+        .send()?;
 
     let response_body: Response<person_by_name::ResponseData> = res.json()?;
 
@@ -47,14 +51,18 @@ pub fn get_people_by_name(name: String) -> Result<person_by_name::ResponseData, 
 )]
 pub struct PersonById;
 
-pub fn get_person_by_id(id: UUID) -> Result<person_by_id::ResponseData, Box<dyn Error>> {
+pub fn get_person_by_id(id: UUID, bearer: String) -> Result<person_by_id::ResponseData, Box<dyn Error>> {
 
     let request_body = PersonById::build_query(person_by_id::Variables {
         id,
     });
 
     let client = reqwest::blocking::Client::new();
-    let mut res = client.post("http://127.0.0.1:8080/graphql").json(&request_body).send()?;
+    let res = client
+        .post("http://127.0.0.1:8080/graphql")
+        .header("Bearer", bearer)
+        .json(&request_body)
+        .send()?;
 
     let response_body: Response<person_by_id::ResponseData> = res.json()?;
 

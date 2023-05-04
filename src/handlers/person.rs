@@ -15,13 +15,15 @@ pub async fn person_by_name(
 
     let (mut ctx, user, lang, path) = generate_basic_context(id, &lang, req.uri().path());
 
-    let people = get_people_by_name(name)
+    let people = get_people_by_name(name, data.bearer.clone())
         .expect("Unable to get people");
 
     ctx.insert("people", &people.person_by_name);
 
     let rendered = data.tmpl.render("person/person_by_name.html", &ctx).unwrap();
-    HttpResponse::Ok().body(rendered)
+    HttpResponse::Ok()
+        .header("Bearer", data.bearer.clone())
+        .body(rendered)
 }
 
 
@@ -35,7 +37,7 @@ pub async fn person_by_id(
 
     let (mut ctx, user, lang, path) = generate_basic_context(id, &lang, req.uri().path());
 
-    let r = get_person_by_id(person_id)
+    let r = get_person_by_id(person_id, data.bearer.clone())
         .expect("Unable to get people");
 
     ctx.insert("person", &r.person_by_id);

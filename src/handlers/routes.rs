@@ -4,6 +4,7 @@ use crate::handlers::{
     // base
     index,
     raw_index,
+
     //about,
     toggle_language,
     toggle_language_index,
@@ -19,6 +20,9 @@ use crate::handlers::{
     person_by_id,
     person_by_name,
 
+    // login
+    login_form_input,
+    login_handler,
     
 
 };
@@ -26,6 +30,10 @@ use crate::handlers::{
 pub fn configure_services(config: &mut web::ServiceConfig) {
     config.service(index);
     config.service(raw_index);
+
+    // login
+    config.service(login_handler);
+    config.service(login_form_input);
 
     // person
     config.service(person_by_id);
