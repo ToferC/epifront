@@ -54,7 +54,7 @@ input LoginQuery {
 }
 
 type Mutation {
-  signIn(input: LoginQuery!): String!
+  signIn(input: LoginQuery!): UserResponse!
 }
 
 # ISO 8601 combined date and time without timezone.
@@ -401,6 +401,12 @@ type Team {
 # * [Wikipedia: Universally Unique Identifier](http://en.wikipedia.org/wiki/Universally_unique_identifier)
 # * [RFC4122: A Universally Unique IDentifier (UUID) URN Namespace](http://tools.ietf.org/html/rfc4122)
 scalar UUID
+
+type UserResponse {
+  bearer: String!
+  role: String!
+  email: String!
+}
 
 # Other people's validations of an individuals Capability
 type Validation {

@@ -41,15 +41,15 @@ pub async fn login_form_input(
         return HttpResponse::Found().header("Location", format!("/{}/log_in", &lang)).finish()
     };
     
-    let bearer = graphql::login(form.email.to_lowercase().trim().to_string(), form.password.clone())
+    let login_data = graphql::login(form.email.to_lowercase().trim().to_string(), form.password.clone())
         .expect("Unable to get login").sign_in;
 
     // Add received string to AppData
-    data.lock().unwrap().bearer = bearer.clone();
+    data.lock().unwrap().bearer = login_data.bearer.clone();
              
     return HttpResponse::Found()
         .header("Location", "/")
-        .header("Bearer", bearer)
+        .header("Bearer", login_data.bearer)
         .finish()
 }
 
