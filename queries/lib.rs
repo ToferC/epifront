@@ -29,13 +29,8 @@ pub fn generate_basic_context(
 {    
     let mut ctx = Context::new();
 
-    let identity = match id.identity() {
-        Some(s) => s.to_string(),
-        None => "".to_string(),
-    };
-
     // Get session data and add to context
-    let (session_user, role) = (identity, "");
+    let (session_user, role) = (id.identity(), "");
     ctx.insert("session_user", &session_user);
     ctx.insert("role", &role);
 
