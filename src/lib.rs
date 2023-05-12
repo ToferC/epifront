@@ -3,6 +3,7 @@ pub mod handlers;
 pub mod graphql;
 pub mod errors;
 
+use std::sync::Mutex;
 use actix_web::web::Data;
 use actix_web::{Error, App};
 use tera::{Tera, Context};
@@ -17,7 +18,6 @@ const APP_NAME: &str = "Epifront";
 #[derive(Clone, Debug)]
 pub struct AppData {
     pub tmpl: Tera,
-    pub bearer: String,
 }
 
 /// Generate context, session_user, role and node_names from id and lang

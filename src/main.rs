@@ -1,6 +1,9 @@
+use actix_web::web;
 use actix_web::{HttpServer, App, middleware};
 use dotenv::dotenv;
 use std::env;
+use std::sync::Arc;
+use std::sync::Mutex;
 use tera::{Tera};
 use tera_text_filters::snake_case;
 use actix_identity::{IdentityService, CookieIdentityPolicy};
@@ -47,28 +50,24 @@ async fn main() -> std::io::Result<()> {
 
     let cookie_secret_key = env::var("COOKIE_SECRET_KEY").expect("Unable to find secret key");
 
-    //let r = get_people_by_name("emi".to_string());
-    //println!("QUERY RESULT: {:?}", r);
+    let mut tera = Tera::new(
+        "templates/**/*").unwrap();
+
+    tera.register_filter("snake_case", snake_case);
+    tera.full_reload().expect("Error running auto-reload with Tera");
+    tera.register_function("fluent", FluentLoader::new(&*LOCALES));
+
+    let data = web::Data::new(AppData {
+        tmpl: tera,
+    });
 
     HttpServer::new(move || {
-        let mut tera = Tera::new(
-            "templates/**/*").unwrap();
-
-        tera.register_filter("snake_case", snake_case);
-        tera.full_reload().expect("Error running auto-reload with Tera");
-        tera.register_function("fluent", FluentLoader::new(&*LOCALES));
-
-        let data = AppData {
-            tmpl: tera,
-            bearer: String::from(""),
-        };
-
         let generated = generate();
 
         App::new()
             .wrap(middleware::Logger::default())
             .configure(handlers::configure_services)
-            .data(data.clone())
+            .app_data(data.clone())
             .service(actix_web_static_files::ResourceFiles::new(
                 "/static", generated,
             ))

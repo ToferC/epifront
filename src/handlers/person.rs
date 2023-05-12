@@ -1,3 +1,4 @@
+use actix_session::UserSession;
 use actix_web::{HttpRequest, HttpResponse, Responder, get, web, ResponseError};
 use actix_identity::{Identity};
 
@@ -15,14 +16,19 @@ pub async fn person_by_name(
 
     let (mut ctx, user, lang, path) = generate_basic_context(id, &lang, req.uri().path());
 
-    let people = get_people_by_name(name, data.bearer.clone())
+    let bearer = match req.get_session().get::<String>("bearer").unwrap() {
+        Some(s) => s,
+        None => "".to_string(),
+    };
+
+    let people = get_people_by_name(name, bearer.clone())
         .expect("Unable to get people");
 
     ctx.insert("people", &people.person_by_name);
 
     let rendered = data.tmpl.render("person/person_by_name.html", &ctx).unwrap();
     HttpResponse::Ok()
-        .header("Bearer", data.bearer.clone())
+        .header("Bearer", bearer)
         .body(rendered)
 }
 
@@ -37,7 +43,12 @@ pub async fn person_by_id(
 
     let (mut ctx, user, lang, path) = generate_basic_context(id, &lang, req.uri().path());
 
-    let r = get_person_by_id(person_id, data.bearer.clone())
+    let bearer = match req.get_session().get::<String>("bearer").unwrap() {
+        Some(s) => s,
+        None => "".to_string(),
+    };
+
+    let r = get_person_by_id(person_id, bearer)
         .expect("Unable to get people");
 
     ctx.insert("person", &r.person_by_id);

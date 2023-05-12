@@ -28,10 +28,9 @@ pub async fn login_handler(
 #[post("/{lang}/log_in")]
 pub async fn login_form_input(
     web::Path(lang): web::Path<String>,
-    data: web::Data<Mutex<AppData>>,
-    _req: HttpRequest, 
+    data: web::Data<AppData>,
+    req: HttpRequest, 
     form: web::Form<LoginForm>,
-    _session: Session,
     id: Identity,
 ) -> impl Responder {
 
@@ -42,10 +41,21 @@ pub async fn login_form_input(
     };
     
     let login_data = graphql::login(form.email.to_lowercase().trim().to_string(), form.password.clone())
-        .expect("Unable to get login").sign_in;
+        .expect("Unable to login").sign_in;
 
-    // Add received string to AppData
-    data.lock().unwrap().bearer = login_data.bearer.clone();
+    // Add user_name and role to session
+    id.remember(login_data.email.to_owned());
+
+    let session = req.get_session();
+
+    session.set("role", login_data.role.to_owned())
+        .expect("Unable to set role");
+
+    session.set("session_user", login_data.email.to_owned())
+        .expect("Unable to set user name");
+
+    session.set("bearer", login_data.bearer.to_owned())
+        .expect("Unable to set bearer");
              
     return HttpResponse::Found()
         .header("Location", "/")
@@ -56,7 +66,7 @@ pub async fn login_form_input(
 #[get("/{lang}/log_out")]
 pub async fn logout(
      web::Path(lang): web::Path<String>,
-    _data: web::Data<AppData>,
+    data: web::Data<AppData>,
     req: HttpRequest,
     id: Identity,
 ) -> impl Responder {
