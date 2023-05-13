@@ -48,7 +48,7 @@ async fn main() -> std::io::Result<()> {
         (String::from("127.0.0.1"), String::from("8088"))
     };
 
-    let cookie_secret_key = env::var("COOKIE_SECRET_KEY").expect("Unable to find secret key");
+    let cookie_secret_key = env::var("COOKIE_SECRET_KEY").expect("Unable to find cookie secret key");
 
     let mut tera = Tera::new(
         "templates/**/*").unwrap();

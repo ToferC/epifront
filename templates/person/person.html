@@ -38,10 +38,11 @@
     <hr>
     <h3>Potential Job Matches</h3>
     {% for match in person.findMatches %}
-        <li>{{ match.titleEnglish }} ({{ match.hrGroup }})-{{ match.hrLevel }}</li>
+        <h5>{{ match.titleEnglish }} ({{ match.hrGroup }})-{{ match.hrLevel }}</h5>
         {% for req in match.requirements %}
             <li>{{ req.nameEn }} ({{ req.domain }}) - {{ req.requiredLevel }}</li>
         {% endfor %}
+        <br>
     {% endfor %}
     <hr>
 
