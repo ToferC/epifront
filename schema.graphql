@@ -106,7 +106,6 @@ type Organization {
 # Will break out address and contact info soon
 type Person {
   id: UUID!
-  userId: UUID!
   email: String!
   phone: String!
   workAddress: String!
@@ -304,6 +303,7 @@ type Requirement {
 }
 
 type Role {
+  id: UUID!
   person: Person
   team: Team!
   titleEnglish: String!
@@ -377,6 +377,7 @@ type Task {
 }
 
 type Team {
+  id: UUID!
   organization: Organization!
   organizationLevel: OrgTier!
   nameEnglish: String!

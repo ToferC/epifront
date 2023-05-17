@@ -6,6 +6,7 @@ pub mod utility;
 pub mod errors;
 pub mod email;
 pub mod person;
+pub mod role;
 pub mod authentication_hander;
 
 pub use base::{index, raw_index};
@@ -16,4 +17,5 @@ pub use utility::*;
 pub use email::*;
 pub use errors::*;
 pub use person::*;
+pub use role::*;
 pub use authentication_hander::*;

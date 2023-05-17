@@ -20,7 +20,7 @@
 
     <h3>Role:
     {% for role in person.activeRoles %}
-        {{ role.titleEnglish }} - {{ role.hrGroup }}-{{ role.hrLevel }}
+        <a href="/{{ lang }}/role/{{ role.id }}">{{ role.titleEnglish }}</a> - {{ role.hrGroup }}-{{ role.hrLevel }}
     {% endfor %}</h3>
 
     <hr>

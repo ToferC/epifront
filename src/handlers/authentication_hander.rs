@@ -28,7 +28,7 @@ pub async fn login_handler(
 #[post("/{lang}/log_in")]
 pub async fn login_form_input(
     web::Path(lang): web::Path<String>,
-    data: web::Data<AppData>,
+    _data: web::Data<AppData>,
     req: HttpRequest, 
     form: web::Form<LoginForm>,
     id: Identity,

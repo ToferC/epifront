@@ -1,0 +1,34 @@
+query RoleById($id:UUID!) {
+  	roleById(id:$id) {
+    id
+    titleEnglish
+    hrGroup
+    hrLevel
+    team {
+      nameEnglish
+      organizationLevel {
+        nameEn
+        primaryDomain
+      }
+      owner {
+        givenName
+        familyName
+        email
+      }
+    }
+    effort
+    work {
+      id
+      workDescription
+      domain
+      capabilityLevel
+      workStatus
+      effort
+    }
+    requirements {
+      nameEn
+      domain
+      requiredLevel
+    }
+  }
+}
