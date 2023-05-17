@@ -3,10 +3,10 @@ welcome-to = Welcome to Data Docs
 
 ## General Section
 
-data-docs = Data Docs
--app-name = Data Docs
-app-description = { -app-name } is a learning project and experiment in constructing organizational documents as native data structures.
-app-mvp = Data Docs MVP
+epicenter = Epicenter
+-app-name = Epicenter
+app-description = { -app-name } is a learning project and experiment in workforce analytics.
+app-mvp = Epicenter MVP
 -user-support-email = usersupport@intersectional-data.ca
 
 ## Base & Navbar
