@@ -8,40 +8,39 @@
 
 <div class="col m-md-2 m-1">
 
-    <h1>{{ role.titleEnglish }}</h1>
-    <h4>{{ role.hrGroup }}-{{ role.hrLevel }}</h4>
+    <h1>{{ role.titleEnglish }} {{ role.hrGroup }}-{{ role.hrLevel }}</h1>
 
+    <h3><a href="/{{ lang }}/person/{{ role.person.id }}">{{ role.person.givenName }} {{ role.person.familyName }}</a></h3>
+    <h5>Current Effort: {{ role.effort }}</h5>
+
+    <hr>
+    <h3>Contact Info</h3>
+    <li>{{ role.person.email }}</li>
+    <li>{{ role.person.phone }}</li>
+
+    <hr>
     <h3>Team</h3>
-    <li>{{ role.team.nameEnglish }}</li>
-    <li>{{ role.team.primaryDomain }}</li>
-    <li>{{ role.team.owner.familyName }}, {{ role.team.owner.givenName }}</li>
-    <li>{{ role.team.owner.email }}</li>
+    <li>Name: <a href="/{{lang}}/team/{{role.team.id}}">{{ role.team.nameEnglish }}</a></li>
+    
+    <li>Owner: <a href="/{{lang}}/person/{{role.team.owner.id}}">{{ role.team.owner.givenName }} {{ role.team.owner.familyName }}</a></li>
+    <li>Owner email: {{ role.team.owner.email }}</li>
 
     <hr>
     <h3>Requirements</h3>
     {% for req in role.requirements %}
-        <li>{{ req.nameEn }} ({{ req.domain }}) - {{ req.requiredLevel }}</li>
+        <li>Requirement: {{ req.nameEn }} ({{ req.domain }}) - {{ req.requiredLevel }}</li>
     {% endfor %}
 
     <hr>
     <h4>Work</h4>
     {% for work in role.work %}
         <h5><strong>{{ work.workDescription }}</strong></li></h5>
-        <li>{{ work.domain }} -> {{ work.capabilityLevel }}</li>
-        <li>{{ work.workStatus}}</li>
+        <li>Domain & Capability: {{ work.domain }} -> {{ work.capabilityLevel }}</li>
+        <li>Status: {{ work.workStatus}}</li>
         <li>Effort: {{ work.effort }}</li>
 
     {% endfor %}
 
-    <hr>
-    <h3>Potential Job Matches</h3>
-    {% for match in role.findMatches %}
-        <h5>{{ match.titleEnglish }} ({{ match.hrGroup }})-{{ match.hrLevel }}</h5>
-        {% for req in match.requirements %}
-            <li>{{ req.nameEn }} ({{ req.domain }}) - {{ req.requiredLevel }}</li>
-        {% endfor %}
-        <br>
-    {% endfor %}
     <hr>
 
 </div>

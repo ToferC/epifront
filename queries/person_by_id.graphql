@@ -13,10 +13,12 @@ query PersonById($id:UUID!) {
       validatedLevel
     }
     activeRoles {
-        titleEnglish
+      id
+      titleEnglish
       startDate
       hrGroup
       hrLevel
+      effort
     }
     inactiveRoles {
          titleEnglish

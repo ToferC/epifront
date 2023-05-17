@@ -4,13 +4,22 @@ query RoleById($id:UUID!) {
     titleEnglish
     hrGroup
     hrLevel
+    person {
+      id
+      familyName
+      givenName
+      phone
+      email
+    }
     team {
+      id
       nameEnglish
       organizationLevel {
         nameEn
         primaryDomain
       }
       owner {
+        id
         givenName
         familyName
         email

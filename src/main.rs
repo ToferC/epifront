@@ -2,17 +2,13 @@ use actix_web::web;
 use actix_web::{HttpServer, App, middleware};
 use dotenv::dotenv;
 use std::env;
-use std::sync::Arc;
-use std::sync::Mutex;
 use tera::{Tera};
 use tera_text_filters::snake_case;
 use actix_identity::{IdentityService, CookieIdentityPolicy};
 use actix_web_static_files;
-use sendgrid::SGClient;
 
 use epifront::handlers;
 use epifront::AppData;
-use epifront::graphql::get_people_by_name;
 
 use fluent_templates::{FluentLoader, static_loader};
 // https://lib.rs/crates/fluent-templates

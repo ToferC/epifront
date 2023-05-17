@@ -20,6 +20,9 @@ use crate::handlers::{
     person_by_id,
     person_by_name,
 
+    // role
+    role_by_id,
+
     // login
     login_form_input,
     login_handler,
@@ -38,6 +41,9 @@ pub fn configure_services(config: &mut web::ServiceConfig) {
     // person
     config.service(person_by_id);
     config.service(person_by_name);
+
+    // role
+    config.service(role_by_id);
     
     //config.service(about);
     config.service(toggle_language);
