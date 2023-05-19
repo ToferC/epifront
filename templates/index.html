@@ -4,6 +4,12 @@
         <div class="col m-md-2 m-1">
             <h1>{{ fluent(key="welcome-to", lang=lang) }}</h1>
 
+            <h2>Organizations</h2>
+
+            {% for organization in organizations %}
+                <li><a href="/{{ lang }}/organization/{{ organization.id }}">{{ organization.nameEn }}</a></li>
+            {% endfor %}
+
             <p>Search person by name: </p>
             <input class="form-control" type="text" placeholder="Search" aria-label="Search">
 

@@ -87,7 +87,7 @@ type Organization {
   id: UUID!
   nameEn: String!
   nameFr: String!
-  acroynmEn: String!
+  acronymEn: String!
   acronymFr: String!
   orgType: String!
   url: String!
@@ -234,6 +234,7 @@ type Query {
   # Accepts argument "count" and returns a vector of {count} organizations
   organizations(count: Int!): [Organization!]!
   organizationByName(name: String!): [Organization!]!
+  organizationById(id: UUID!): Organization!
 
   # Returns a vector of all  org tiers
   allOrgTiers: [OrgTier!]!

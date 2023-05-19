@@ -16,6 +16,10 @@ use crate::handlers::{
     internal_server_error,
     not_found,
 
+    // login
+    login_form_input,
+    login_handler,
+
     // person
     person_by_id,
     person_by_name,
@@ -23,9 +27,8 @@ use crate::handlers::{
     // role
     role_by_id,
 
-    // login
-    login_form_input,
-    login_handler,
+    // organization
+    organization_by_id,
     
 
 };
@@ -44,6 +47,9 @@ pub fn configure_services(config: &mut web::ServiceConfig) {
 
     // role
     config.service(role_by_id);
+
+    // organization
+    config.service(organization_by_id);
     
     //config.service(about);
     config.service(toggle_language);
