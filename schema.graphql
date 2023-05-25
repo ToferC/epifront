@@ -79,6 +79,7 @@ type OrgTier {
   organization: Organization!
   parentOrganizationTier: OrgTier
   owner: Person!
+  teams: [Team!]!
 }
 
 # Represents an organization as a core structure within which are
@@ -244,6 +245,7 @@ type Query {
 
   # Accepts argument "count" and returns a vector of {count} org tiers
   OrgTiers(count: Int!): [OrgTier!]!
+  orgTierById(id: UUID!): OrgTier!
   orgTierByName(name: String!): [OrgTier!]!
   orgChart(id: UUID!): [String!]!
 

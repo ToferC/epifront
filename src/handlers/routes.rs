@@ -29,6 +29,12 @@ use crate::handlers::{
 
     // organization
     organization_by_id,
+
+    // org_tier
+    org_tier_by_id,
+
+    // team
+    team_by_id,
     
 
 };
@@ -50,6 +56,12 @@ pub fn configure_services(config: &mut web::ServiceConfig) {
 
     // organization
     config.service(organization_by_id);
+
+    // org_tier
+    config.service(org_tier_by_id);
+
+    // team
+    config.service(team_by_id);
     
     //config.service(about);
     config.service(toggle_language);

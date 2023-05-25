@@ -2,14 +2,13 @@ use graphql_client::{GraphQLQuery, Response};
 use serde::{Serialize, Deserialize};
 use std::error::Error;
 use reqwest;
-use uuid::Uuid;
 
 type UUID = String;
 
 #[derive(GraphQLQuery, Serialize, Deserialize)]
 #[graphql(
     schema_path = "schema.graphql",
-    query_path = "queries/role_by_id.graphql",
+    query_path = "queries/roles/role_by_id.graphql",
     response_derives = "Debug, Serialize, PartialEq"
 )]
 pub struct RoleById;

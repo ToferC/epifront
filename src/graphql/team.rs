@@ -2,21 +2,21 @@ use graphql_client::{GraphQLQuery, Response};
 use serde::{Serialize, Deserialize};
 use std::error::Error;
 use reqwest;
-use uuid::Uuid;
 
 type UUID = String;
+
 #[derive(GraphQLQuery, Serialize, Deserialize)]
 #[graphql(
     schema_path = "schema.graphql",
-    query_path = "queries/people/person_by_name.graphql",
+    query_path = "queries/teams/team_by_id.graphql",
     response_derives = "Debug, Serialize, PartialEq"
 )]
-pub struct PersonByName;
+pub struct TeamById;
 
-pub fn get_people_by_name(name: String, bearer: String) -> Result<person_by_name::ResponseData, Box<dyn Error>> {
+pub fn get_team_by_id(id: UUID, bearer: String) -> Result<team_by_id::ResponseData, Box<dyn Error>> {
 
-    let request_body = PersonByName::build_query(person_by_name::Variables {
-        name,
+    let request_body = TeamById::build_query(team_by_id::Variables {
+        id,
     });
 
     let client = reqwest::blocking::Client::new();
@@ -26,7 +26,7 @@ pub fn get_people_by_name(name: String, bearer: String) -> Result<person_by_name
         .json(&request_body)
         .send()?;
 
-    let response_body: Response<person_by_name::ResponseData> = res.json()?;
+    let response_body: Response<team_by_id::ResponseData> = res.json()?;
 
     if let Some(errors) = response_body.errors {
         println!("there are errors:");
@@ -46,15 +46,14 @@ pub fn get_people_by_name(name: String, bearer: String) -> Result<person_by_name
 #[derive(GraphQLQuery, Serialize, Deserialize)]
 #[graphql(
     schema_path = "schema.graphql",
-    query_path = "queries/people/person_by_id.graphql",
+    query_path = "queries/teams/all_teams.graphql",
     response_derives = "Debug, Serialize, PartialEq"
 )]
-pub struct PersonById;
+pub struct AllTeams;
 
-pub fn get_person_by_id(id: UUID, bearer: String) -> Result<person_by_id::ResponseData, Box<dyn Error>> {
+pub fn all_teams(bearer: String) -> Result<all_teams::ResponseData, Box<dyn Error>> {
 
-    let request_body = PersonById::build_query(person_by_id::Variables {
-        id,
+    let request_body = AllTeams::build_query(all_teams::Variables {
     });
 
     let client = reqwest::blocking::Client::new();
@@ -64,7 +63,7 @@ pub fn get_person_by_id(id: UUID, bearer: String) -> Result<person_by_id::Respon
         .json(&request_body)
         .send()?;
 
-    let response_body: Response<person_by_id::ResponseData> = res.json()?;
+    let response_body: Response<all_teams::ResponseData> = res.json()?;
 
     if let Some(errors) = response_body.errors {
         println!("there are errors:");

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>{{ fluent(key="org_tier", lang=lang )}}</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="col m-md-2 m-1">
+
+    <h1>{{ org_tier.nameEn }}</h1>
+    <li>Primary Domain: {{ org_tier.primaryDomain }}</li>
+    <li>Tier Level: {{ org_tier.tierLevel }}</li>
+    <h3>Parent Organization Tier: <a href="/{{ lang }}/org_tier/{{ org_tier.parentOrganizationTier.id }}">{{ org_tier.parentOrganizationTier.nameEn }}</a></li>
+
+    <li>Owner: <a href="/{{lang}}/person/{{org_tier.team.owner.id}}">{{ org_tier.team.owner.givenName }} {{ org_tier.team.owner.familyName }}</a></li>
+    <li>Owner email: {{ org_tier.team.owner.email }}</li>
+
+    <hr>
+    <h3>teams</h3>
+    {% for team in org_tier.teams %}
+        <li><a href="/{{lang}}/team/{{team.id}}">{{ team.nameEnglish }}</a></li>
+    {% endfor %}
+
+    <hr>
+
+</div>
+
+
+
+{% endblock content %}

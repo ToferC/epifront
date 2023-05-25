@@ -1,3 +1,4 @@
+pub mod authentication_hander;
 pub mod base;
 pub mod routes;
 pub mod users;
@@ -8,8 +9,10 @@ pub mod email;
 pub mod person;
 pub mod role;
 pub mod organization;
-pub mod authentication_hander;
+pub mod team;
+pub mod org_tier;
 
+pub use authentication_hander::*;
 pub use base::{index, raw_index};
 pub use routes::configure_services;
 pub use users::*;
@@ -20,4 +23,5 @@ pub use errors::*;
 pub use person::*;
 pub use role::*;
 pub use organization::*;
-pub use authentication_hander::*;
+pub use team::*;
+pub use org_tier::*;

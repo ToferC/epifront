@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>{{ fluent(key="team", lang=lang )}}</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="col m-md-2 m-1">
+
+    <h1>{{ team.nameEnglish }}</h1>
+    <p>{{ team.descriptionEnglish }}</p>
+
+    <hr>
+
+    <h2>Details</h2>
+    <li>Organization: <a href="/{{lang}}/organization/{{ team.organization.id }}">{{ team.team.nameEn}}</a></li>
+    <li>Organization Level: <a href="/{{lang}}/team.organization_level/{{ team.organizationLevel.id }}">{{ team.teamLevel.nameEn}}</a></li>
+    <li>Owner: <a href="/{{lang}}/person/{{team.owner.id}}">{{ team.owner.givenName }} {{ team.owner.familyName }}</a></li>
+    <li>Owner email: {{ team.owner.email }}</li>
+
+    <h2>Occupied Roles</h2>
+    {% for role in team.occupiedRoles %}
+        <a href="/{{lang}}/role/{{ role.id }}">{{ role.titleEn}}</a>
+    {% endfor %}
+
+    <h2>Vacant Roles</h2>
+    {% for role in team.vacantRoles %}
+        <a href="/{{lang}}/role/{{ role.id }}">{{ role.titleEn}}</a>
+    {% endfor %}
+
+    <hr>
+
+</div>
+
+
+
+{% endblock content %}

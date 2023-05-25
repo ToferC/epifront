@@ -2,21 +2,21 @@ use graphql_client::{GraphQLQuery, Response};
 use serde::{Serialize, Deserialize};
 use std::error::Error;
 use reqwest;
-use uuid::Uuid;
 
 type UUID = String;
+
 #[derive(GraphQLQuery, Serialize, Deserialize)]
 #[graphql(
     schema_path = "schema.graphql",
-    query_path = "queries/people/person_by_name.graphql",
+    query_path = "queries/org_tiers/org_tier_by_id.graphql",
     response_derives = "Debug, Serialize, PartialEq"
 )]
-pub struct PersonByName;
+pub struct OrgTierById;
 
-pub fn get_people_by_name(name: String, bearer: String) -> Result<person_by_name::ResponseData, Box<dyn Error>> {
+pub fn get_org_tier_by_id(id: UUID, bearer: String) -> Result<org_tier_by_id::ResponseData, Box<dyn Error>> {
 
-    let request_body = PersonByName::build_query(person_by_name::Variables {
-        name,
+    let request_body = OrgTierById::build_query(org_tier_by_id::Variables {
+        id,
     });
 
     let client = reqwest::blocking::Client::new();
@@ -26,7 +26,7 @@ pub fn get_people_by_name(name: String, bearer: String) -> Result<person_by_name
         .json(&request_body)
         .send()?;
 
-    let response_body: Response<person_by_name::ResponseData> = res.json()?;
+    let response_body: Response<org_tier_by_id::ResponseData> = res.json()?;
 
     if let Some(errors) = response_body.errors {
         println!("there are errors:");
@@ -46,14 +46,13 @@ pub fn get_people_by_name(name: String, bearer: String) -> Result<person_by_name
 #[derive(GraphQLQuery, Serialize, Deserialize)]
 #[graphql(
     schema_path = "schema.graphql",
-    query_path = "queries/people/person_by_id.graphql",
+    query_path = "queries/org_tiers/org_tiers_by_org_id.graphql",
     response_derives = "Debug, Serialize, PartialEq"
 )]
-pub struct PersonById;
+pub struct OrgTiersByOrgId;
+pub fn get_org_tiers_by_org_id(id: UUID, bearer: String) -> Result<org_tiers_by_org_id::ResponseData, Box<dyn Error>> {
 
-pub fn get_person_by_id(id: UUID, bearer: String) -> Result<person_by_id::ResponseData, Box<dyn Error>> {
-
-    let request_body = PersonById::build_query(person_by_id::Variables {
+    let request_body = OrgTiersByOrgId::build_query(org_tiers_by_org_id::Variables {
         id,
     });
 
@@ -64,7 +63,7 @@ pub fn get_person_by_id(id: UUID, bearer: String) -> Result<person_by_id::Respon
         .json(&request_body)
         .send()?;
 
-    let response_body: Response<person_by_id::ResponseData> = res.json()?;
+    let response_body: Response<org_tiers_by_org_id::ResponseData> = res.json()?;
 
     if let Some(errors) = response_body.errors {
         println!("there are errors:");
