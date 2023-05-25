@@ -14,10 +14,19 @@ query TeamById($id:UUID!) {
     occupiedRoles {
       titleEnglish
       id
+      hrLevel
+      hrGroup
+      person {
+        givenName
+        familyName
+        id
+      }
     }
     vacantRoles {
       titleEnglish
       id
+      hrLevel
+      hrGroup
     }
     owner {
       givenName

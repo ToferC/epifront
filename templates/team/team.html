@@ -13,20 +13,26 @@
 
     <hr>
 
-    <h2>Details</h2>
-    <li>Organization: <a href="/{{lang}}/organization/{{ team.organization.id }}">{{ team.team.nameEn}}</a></li>
-    <li>Organization Level: <a href="/{{lang}}/team.organization_level/{{ team.organizationLevel.id }}">{{ team.teamLevel.nameEn}}</a></li>
+    <h3>Details</h3>
+    <li>Organization: <a href="/{{lang}}/organization/{{ team.organization.id }}">{{ team.organization.nameEn }}</a></li>
+    <li>Organization Level: <a href="/{{lang}}/org_tier/{{ team.organizationLevel.id }}">{{ team.organizationLevel.nameEn}}</a></li>
     <li>Owner: <a href="/{{lang}}/person/{{team.owner.id}}">{{ team.owner.givenName }} {{ team.owner.familyName }}</a></li>
     <li>Owner email: {{ team.owner.email }}</li>
 
-    <h2>Occupied Roles</h2>
+    <hr>
+
+    <h3>Occupied Roles</h3>
     {% for role in team.occupiedRoles %}
-        <a href="/{{lang}}/role/{{ role.id }}">{{ role.titleEn}}</a>
+        <li>
+            <a href="/{{lang}}/role/{{ role.id }}">{{ role.titleEnglish}} ({{ role.hrGroup }}-{{ role.hrLevel}})</a>
+            <a href="/{{lang}}/person/{{role.person.id}}">{{ role.person.givenName }} {{ role.person.familyName }}</a>
+        </li>
     {% endfor %}
 
-    <h2>Vacant Roles</h2>
+    <hr>
+    <h3>Vacant Roles</h3>
     {% for role in team.vacantRoles %}
-        <a href="/{{lang}}/role/{{ role.id }}">{{ role.titleEn}}</a>
+        <a href="/{{lang}}/role/{{ role.id }}">{{ role.titleEnglish}}</a>
     {% endfor %}
 
     <hr>

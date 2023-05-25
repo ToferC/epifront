@@ -16,10 +16,20 @@ query OrgTierById($id:UUID!) {
       id
       givenName
       familyName
+      email
+    }
+    childOrganizationTier {
+      nameEn
+      id
     }
     teams {
       nameEnglish
       id
+      owner {
+        familyName
+        givenName
+        id
+      }
     }
   }
 }

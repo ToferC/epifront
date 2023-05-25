@@ -78,6 +78,7 @@ type OrgTier {
   retiredAt: NaiveDateTime
   organization: Organization!
   parentOrganizationTier: OrgTier
+  childOrganizationTier: [OrgTier!]!
   owner: Person!
   teams: [Team!]!
 }
