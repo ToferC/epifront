@@ -21,12 +21,14 @@ query PersonById($id:UUID!) {
       effort
     }
     inactiveRoles {
-         titleEnglish
+      id
+      titleEnglish
       startDate
       hrGroup
       hrLevel
     }
     findMatches {
+      id
       titleEnglish
       hrGroup
       hrLevel
@@ -47,6 +49,9 @@ query PersonById($id:UUID!) {
       id
       title
       urlString
+      subjectText
+      publicationStatus
+      publishedDatestamp
     }
   }
 }
