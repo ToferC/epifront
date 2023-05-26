@@ -2,7 +2,7 @@ use graphql_client::{GraphQLQuery, Response};
 use serde::{Serialize, Deserialize};
 use std::error::Error;
 use reqwest;
-use uuid::Uuid;
+use chrono::NaiveDateTime;
 
 type UUID = String;
 #[derive(GraphQLQuery, Serialize, Deserialize)]
