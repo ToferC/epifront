@@ -36,5 +36,17 @@ query PersonById($id:UUID!) {
         requiredLevel
       }
     }
+    affiliations {
+      organization {
+        nameEn
+        id
+      }
+      affiliationRole
+    }
+    publications {
+      id
+      title
+      urlString
+    }
   }
 }
