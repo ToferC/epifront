@@ -24,7 +24,31 @@
         <hr>
     {% endfor %}
 
+    <h3>Publications</h3>
+    {% if organization.publications %}
+        {% for pub in organization.publications %}
+            <p>Name: <a href="/{{lang}}/publication/{{pub.id}}">{{ pub.title }}</a></p>
+            <li>Status: {{ pub.publicationStatus }}</li>
+            <li>Lead Author: <a href="/{{lang}}/person/{{pub.leadAuthor.id}}">{{ pub.leadAuthor.givenName }} {{ pub.leadAuthor.familyName }}</a></li>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>No Publications</p>
+    {% endif %}
+
     <hr>
+
+    <h3>Affiliations</h3>
+    {% if organization.getAffiliations %}
+        {% for aff in organization.getAffiliations %}
+            <li><a href="/{{lang}}/person/{{aff.person.id}}">{{ aff.person.givenName }} {{ aff.person.familyName }}</a></li>
+            <li>Role: {{ aff.affiliationRole }}</li>
+            <hr>
+    {% endfor %}
+    {% else %}
+        <p>No Affiliations</p>
+    {% endif %}
+
 
 </div>
 

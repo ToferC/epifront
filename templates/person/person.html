@@ -51,7 +51,7 @@
     <h3>Affiliations</h3>
     {% if person.affilations %}
         {% for aff in person.affiliations %}
-            <li><a href="/{{lang}}/organization/{{aff.id}}">{{ aff.organization.nameEn }} - {{ aff.affiliationRole }}</a></li>
+            <li><a href="/{{lang}}/affiliation/{{aff.id}}">{{ aff.organization.nameEn }} - {{ aff.affiliationRole }}</a></li>
         {% endfor %}
     {% else %}
         <li>None</li>
@@ -62,7 +62,7 @@
     <h3>Publications</h3>
     {% if person.publications %}
         {% for pub in person.publications %}
-            <li><a href="/{{lang}}/publication/{{aff.id}}">{{ pub.title }} - {{ pub.subjectText }}</a></li>
+            <li><a href="/{{lang}}/publication/{{pub.id}}">{{ pub.title }} - {{ pub.subjectText }}</a></li>
         {% endfor %}
     {% else %}
         <li>None</li>

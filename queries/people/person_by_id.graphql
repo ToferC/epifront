@@ -39,6 +39,7 @@ query PersonById($id:UUID!) {
       }
     }
     affiliations {
+      id
       organization {
         nameEn
         id

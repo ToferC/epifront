@@ -20,5 +20,24 @@ query OrganizationById($id:UUID!) {
       name
       counts
     }
+    publications {
+      id
+      title
+      publicationStatus
+      leadAuthor {
+        id
+        givenName
+        familyName
+      }
+    }
+    getAffiliations {
+      id
+      affiliationRole
+      person {
+        id
+        givenName
+        familyName
+      }
+    }
   }
 }

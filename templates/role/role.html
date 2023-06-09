@@ -27,24 +27,29 @@
 
     <hr>
     <h3>Requirements</h3>
-    {% for req in role.requirements %}
-        <li>Requirement: {{ req.nameEn }} ({{ req.domain }}) - {{ req.requiredLevel }}</li>
-    {% endfor %}
+    {% if role.requirements %}
+        {% for req in role.requirements %}
+            <li>Requirement: {{ req.nameEn }} ({{ req.domain }}) - {{ req.requiredLevel }}</li>
+        {% endfor %}
+    {% else %}
+        <p>No Requirements</p>
+    {% endif %}
 
     <hr>
     <h4>Work</h4>
-    {% for work in role.work %}
-        <h5><strong>{{ work.workDescription }}</strong></li></h5>
-        <li>Domain & Capability: {{ work.domain }} -> {{ work.capabilityLevel }}</li>
-        <li>Status: {{ work.workStatus}}</li>
-        <li>Effort: {{ work.effort }}</li>
-
-    {% endfor %}
+    {% if role.work %}
+        {% for work in role.work %}
+            <h5><strong>{{ work.workDescription }}</strong></li></h5>
+            <li>Domain & Capability: {{ work.domain }} -> {{ work.capabilityLevel }}</li>
+            <li>Status: {{ work.workStatus}}</li>
+            <li>Effort: {{ work.effort }}</li>
+        {% endfor %}
+    {% else %}
+        <p>No Work</p>
+    {% endif %}
 
     <hr>
 
 </div>
-
-
 
 {% endblock content %}
