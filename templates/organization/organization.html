@@ -17,7 +17,7 @@
 
     <hr>
     <h3>Organizational Tiers</h3>
-    {% for ot in organization.orgTiers %}
+    {% for ot in organization.topOrgTier %}
         <p>Name: <a href="/{{lang}}/org_tier/{{ot.id}}">{{ ot.nameEn }}</a></p>
         <li>Primary Domain: {{ ot.primaryDomain }}</li>
         <li>Owner: <a href="/{{lang}}/person/{{ot.owner.id}}">{{ ot.owner.givenName }} {{ ot.owner.familyName }}</a></li>
@@ -39,9 +39,10 @@
     <hr>
 
     <h3>Affiliations</h3>
-    {% if organization.getAffiliations %}
-        {% for aff in organization.getAffiliations %}
-            <li><a href="/{{lang}}/person/{{aff.person.id}}">{{ aff.person.givenName }} {{ aff.person.familyName }}</a></li>
+    {% if organization.affiliations %}
+        {% for aff in organization.affiliations %}
+            <p><a href="/{{lang}}/person/{{aff.person.id}}">{{ aff.person.givenName }} {{ aff.person.familyName }}</a></p>
+            <li><a href="/{{lang}}/organization/{{aff.organization.id}}">{{ aff.organization.nameEn }}</a></li>
             <li>Role: {{ aff.affiliationRole }}</li>
             <hr>
     {% endfor %}

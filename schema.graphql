@@ -2,6 +2,7 @@ type Affiliation {
   id: UUID!
   personId: UUID!
   organizationId: UUID!
+  homeOrgId: UUID!
   affiliationRole: String!
   startDatestamp: NaiveDateTime!
   endDate: NaiveDateTime
@@ -9,6 +10,7 @@ type Affiliation {
   updatedAt: NaiveDateTime!
   person: Person!
   organization: Organization!
+  homeOrganization: Organization!
 }
 
 # A representation of a persons ability to use a skill at a specific level
@@ -96,10 +98,11 @@ type Organization {
   createdAt: NaiveDateTime!
   updatedAt: NaiveDateTime!
   retiredAt: NaiveDateTime
-  getAffiliations: [Affiliation!]!
+  affiliations: [Affiliation!]!
   publications: [Publication!]!
   orgTiers: [OrgTier!]!
-  getCapabilityCounts: [CapabilityCount!]!
+  topOrgTier: [OrgTier!]!
+  capabilityCounts: [CapabilityCount!]!
 }
 
 # Represents a person working in an organization

@@ -4,7 +4,7 @@ query OrganizationById($id:UUID!) {
     acronymEn
     orgType
     url
-    orgTiers {
+    topOrgTier {
       id
       nameEn
       primaryDomain
@@ -15,7 +15,7 @@ query OrganizationById($id:UUID!) {
         email
       }
     }
-    getCapabilityCounts {
+    capabilityCounts {
       domain
       name
       counts
@@ -30,9 +30,13 @@ query OrganizationById($id:UUID!) {
         familyName
       }
     }
-    getAffiliations {
+    affiliations {
       id
       affiliationRole
+      organization {
+        id
+        nameEn
+      }
       person {
         id
         givenName
