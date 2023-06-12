@@ -10,13 +10,17 @@
 
     <h1>{{ role.titleEnglish }} {{ role.hrGroup }}-{{ role.hrLevel }}</h1>
 
-    <h3><a href="/{{ lang }}/person/{{ role.person.id }}">{{ role.person.givenName }} {{ role.person.familyName }}</a></h3>
-    <h5>Current Effort: {{ role.effort }}</h5>
+    {% if role.person %}
+        <h3><a href="/{{ lang }}/person/{{ role.person.id }}">{{ role.person.givenName }} {{ role.person.familyName }}</a></h3>
+        <h5>Current Effort: {{ role.effort }}</h5>
 
-    <hr>
-    <h3>Contact Info</h3>
-    <li>{{ role.person.email }}</li>
-    <li>{{ role.person.phone }}</li>
+        <hr>
+        <h3>Contact Info</h3>
+        <li>{{ role.person.email }}</li>
+        <li>{{ role.person.phone }}</li>
+    {% else %}
+        <h3>VACANT</h3>
+    {% endif %}
 
     <hr>
     <h3>Team</h3>
