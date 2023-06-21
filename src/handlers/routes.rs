@@ -36,6 +36,8 @@ use crate::handlers::{
     // team
     team_by_id,
     
+    // publication
+    publication_by_id,
 
 };
 
@@ -62,6 +64,9 @@ pub fn configure_services(config: &mut web::ServiceConfig) {
 
     // team
     config.service(team_by_id);
+
+    // publication
+    config.service(publication_by_id);
     
     //config.service(about);
     config.service(toggle_language);

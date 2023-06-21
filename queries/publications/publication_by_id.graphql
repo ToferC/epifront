@@ -1,0 +1,41 @@
+query PublicationById($id:UUID!) {
+  	publicationById(id:$id) {
+    id
+    title
+    subjectText
+    urlString
+    publicationStatus
+    publishingId
+    publishedDatestamp
+    publishingOrganization {
+      id
+      nameEn
+    }
+    createdAt
+    updatedAt
+    leadAuthor {
+      id
+      givenName
+      familyName
+      email
+      phone
+      workAddress
+      orcidId
+      organization {
+        id
+        nameEn
+      }
+      activeRoles {
+        id
+        titleEnglish
+        hrGroup
+        hrLevel
+      }
+    }
+   contributors {
+    id
+    givenName
+    familyName
+  }
+  }
+}

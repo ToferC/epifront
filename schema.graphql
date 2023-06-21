@@ -275,6 +275,9 @@ type Query {
   # Accepts argument "title" and returns a vector of publications with that title or subject
   publicationByTitle(title: String!): [Publication!]!
 
+  # Accepts id and returns a publications
+  publicationById(id: UUID!): Publication!
+
   # Accepts argument of "count" and returns a vector of {count} tasks ordered by
   # family name.D
   allTasks: [Task!]!
