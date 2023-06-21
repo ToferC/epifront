@@ -43,7 +43,7 @@
     <h4>Work</h4>
     {% if role.work %}
         {% for work in role.work %}
-            <h5><strong>{{ work.workDescription }}</strong></li></h5>
+            <h5><strong><a href="/{{lang}}/work/{{work.id}}">{{ work.workDescription }}</a></strong></li></h5>
             <li>Domain & Capability: {{ work.domain }} -> {{ work.capabilityLevel }}</li>
             <li>Status: {{ work.workStatus}}</li>
             <li>Effort: {{ work.effort }}</li>

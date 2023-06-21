@@ -12,6 +12,7 @@ pub mod organization;
 pub mod team;
 pub mod org_tier;
 pub mod publication;
+pub mod work;
 
 pub use authentication_hander::*;
 pub use base::{index, raw_index};
@@ -27,3 +28,4 @@ pub use organization::*;
 pub use team::*;
 pub use org_tier::*;
 pub use publication::*;
+pub use work::*;

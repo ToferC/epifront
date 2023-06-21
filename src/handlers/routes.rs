@@ -39,6 +39,9 @@ use crate::handlers::{
     // publication
     publication_by_id,
 
+    // work
+    work_by_id,
+
 };
 
 pub fn configure_services(config: &mut web::ServiceConfig) {
@@ -67,6 +70,9 @@ pub fn configure_services(config: &mut web::ServiceConfig) {
 
     // publication
     config.service(publication_by_id);
+
+    // work
+    config.service(work_by_id);
     
     //config.service(about);
     config.service(toggle_language);
