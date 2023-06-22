@@ -17,6 +17,9 @@
     <li>Target Completion Date: {{ work.task.targetCompletionDate }}</li>
     
     <hr>
+    <h5>Assigned by: <a href="/{{lang}}/person/{{work.task.createdBy.person.id}}">{{ work.task.createdBy.person.givenName }} {{ work.task.createdBy.person.familyName }}</a> - <a href="/{{ lang }}/role/{{ work.task.createdBy.id }}">{{ work.role.titleEnglish }} - {{ work.task.createdBy.hrGroup }}-{{ work.task.createdBy.hrLevel }}</a></h5>
+    <li>Team: <a href="/{{lang}}/team/{{work.task.createdBy.team.id}}">{{ work.task.createdBy.team.nameEnglish }}</a></li>
+    <hr>
 
     <h3>Assigned to</h3>
     {% if work.role.person %}

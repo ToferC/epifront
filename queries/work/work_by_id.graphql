@@ -8,27 +8,42 @@ query WorkById($id:UUID!) {
     effort
     workStatus
     task {
+      id
+      title
+      domain
+      targetCompletionDate
       createdBy {
         id
         titleEnglish
+        hrGroup
+        hrLevel
         person {
           id
           givenName
           familyName
         }
+        team {
+          id
+          nameEnglish
+        }
       }
-      id
-      title
-      domain
-      
     }
     role {
       id
       titleEnglish
+      hrGroup
+      hrLevel
       person {
         id
         familyName
         givenName
+        workAddress
+        email
+        phone
+        organization {
+            id
+            nameEn
+        }
       }
     }
   }
