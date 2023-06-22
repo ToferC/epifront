@@ -32,7 +32,7 @@
     <hr>
     <h3>Vacant Roles</h3>
     {% for role in team.vacantRoles %}
-        <a href="/{{lang}}/role/{{ role.id }}">{{ role.titleEnglish}}</a>
+        <li><a href="/{{lang}}/role/{{ role.id }}">{{ role.titleEnglish}}</a></li>
     {% endfor %}
 
     <hr>
