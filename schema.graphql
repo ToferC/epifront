@@ -384,6 +384,7 @@ type Task {
   updatedAt: NaiveDateTime!
   work: [Work!]!
   effort: Int!
+  createdBy: Role!
 }
 
 type Team {
