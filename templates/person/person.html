@@ -18,16 +18,38 @@
     
     <hr>
 
-    <h4>Role:
+    <h3>Role</h3>
     {% for role in person.activeRoles %}
-        <a href="/{{ lang }}/role/{{ role.id }}">{{ role.titleEnglish }}</a> - {{ role.hrGroup }}-{{ role.hrLevel }}
-        Effort: {{ role.effort }}
+        <h5><a href="/{{lang}}/role/{{ role.id }}">{{ role.titleEnglish}} ({{ role.hrGroup }}-{{ role.hrLevel}})</a></h5>
+        <h5>Current Effort: {{ role.effort }}</h5>
+
+        <hr>
+        <h3>Team</h3>
+        <li>Name: <a href="/{{lang}}/team/{{role.team.id}}">{{ role.team.nameEnglish }}</a></li>
+        
+        <li>Owner: <a href="/{{lang}}/person/{{role.team.owner.id}}">{{ role.team.owner.givenName }} {{ role.team.owner.familyName }}</a></li>
+        <li>Owner email: {{ role.team.owner.email }}</li>
+
+        <hr>
+        <h4>Work</h4>
+        {% if role.work %}
+            {% for work in role.work %}
+                <h5><strong><a href="/{{lang}}/work/{{work.id}}">{{ work.workDescription }}</a></strong></li></h5>
+                <li>Domain & Capability: {{ work.domain }} -> {{ work.capabilityLevel }}</li>
+                <li>Status: {{ work.workStatus}}</li>
+                <li>Effort: {{ work.effort }}</li>
+            {% endfor %}
+        {% else %}
+            <p>No Work</p>
+        {% endif %}
+
+        <hr>
     {% endfor %}</h4>
 
     <hr>
     <h4>Past Roles</h4>
     {% for role in person.inactiveRoles %}
-        <li><strong>{{ role.titleEnglish }}</strong> - {{ role.hrGroup }}-{{ role.hrLevel }}</li>
+        <li><a href="/{{lang}}/role/{{ role.id }}">{{ role.titleEnglish}} ({{ role.hrGroup }}-{{ role.hrLevel}})</a></li>
     {% endfor %}
 
     <hr>

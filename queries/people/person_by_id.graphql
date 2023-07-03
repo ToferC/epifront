@@ -16,14 +16,38 @@ query PersonById($id:UUID!) {
       id
       titleEnglish
       startDate
+      endDate
       hrGroup
       hrLevel
       effort
+      team {
+        id
+        nameEnglish
+        organizationLevel {
+          nameEn
+          primaryDomain
+        }
+        owner {
+          id
+          givenName
+          familyName
+          email
+        }
+      }
+      work {
+        id
+        workDescription
+        domain
+        capabilityLevel
+        workStatus
+        effort
+      }
     }
     inactiveRoles {
       id
       titleEnglish
       startDate
+      endDate
       hrGroup
       hrLevel
     }

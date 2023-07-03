@@ -4,6 +4,8 @@ query RoleById($id:UUID!) {
     titleEnglish
     hrGroup
     hrLevel
+    startDate
+    endDate
     person {
       id
       familyName
