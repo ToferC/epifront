@@ -24,6 +24,38 @@
         <hr>
     {% endfor %}
 
+    <hr>
+
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#capabilitySummary" aria-expanded="false" aria-controls="collapseExample">
+        Organizational Capabilities
+        </button>
+    </p>
+    <div class="collapse" id="capabilitySummary">
+        <h3>Capability Summary</h3>
+            {% if organization.capabilityCounts %}
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Domain</th>
+                    <th>Level</th>
+                    <th>Count</th>
+                </tr>
+                {% for count in organization.capabilityCounts %}
+                    <tr>
+                        <td>{{ count.name }}</td>
+                        <td>{{ count.domain }}</td>
+                        <td>{{ count.level }}</td>
+                        <td>{{ count.counts }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+                <p>No Capability Count data</p>
+            {% endif %}
+      </div>
+    <hr>
+
     <h3>Publications</h3>
     {% if organization.publications %}
         {% for pub in organization.publications %}

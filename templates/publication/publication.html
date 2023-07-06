@@ -34,7 +34,7 @@
     <h4>Contributors</h4>
     {% for contributor in publication.contributors %}
         <li>
-            <a href="/{{lang}}/person/{{contributor.id}}">{{ contributor.givenName }} {{ contributor.familyName }}</a></li>
+            <a href="/{{lang}}/person/{{contributor.id}}">{{ contributor.givenName }} {{ contributor.familyName }}</a> - {{ contributor.organization.nameEn }} - {% if contributor.activeRoles %}{{ contributor.activeRoles.0.titleEnglish }} {% else %}No Role{% endif %}</li>
         </li>
     {% endfor %}
 

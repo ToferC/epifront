@@ -7,6 +7,10 @@ query PersonById($id:UUID!) {
     email
     workAddress
     postalCode
+    organization {
+      id
+      nameEn
+    }
     capabilities {
       nameEn
       domain

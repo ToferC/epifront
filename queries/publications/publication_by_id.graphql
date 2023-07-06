@@ -36,6 +36,14 @@ query PublicationById($id:UUID!) {
     id
     givenName
     familyName
+    organization {
+      id
+      nameEn
+    }
+    activeRoles {
+      id
+      titleEnglish
+    }
   }
   }
 }

@@ -18,6 +18,7 @@ query OrganizationById($id:UUID!) {
     capabilityCounts {
       domain
       name
+      level
       counts
     }
     publications {
