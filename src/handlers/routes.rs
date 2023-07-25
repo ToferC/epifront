@@ -42,6 +42,9 @@ use crate::handlers::{
     // work
     work_by_id,
 
+    // task
+    task_by_id,
+
 };
 
 pub fn configure_services(config: &mut web::ServiceConfig) {
@@ -73,6 +76,9 @@ pub fn configure_services(config: &mut web::ServiceConfig) {
 
     // work
     config.service(work_by_id);
+
+    // task
+    config.service(task_by_id);
     
     //config.service(about);
     config.service(toggle_language);

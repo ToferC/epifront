@@ -6,6 +6,7 @@ pub mod team;
 pub mod org_tier;
 pub mod publication;
 pub mod work;
+pub mod task;
 
 pub use log_in_mutation::*;
 pub use person::*;
@@ -15,3 +16,4 @@ pub use team::*;
 pub use org_tier::*;
 pub use publication::*;
 pub use work::*;
+pub use task::*;
