@@ -8,10 +8,9 @@ build = "build.rs"
 
 [dependencies]
 # Web
-actix-web = "3.3.3"
+actix-web = "4.4.0"
 actix-web-httpauth = { git = "https://github.com/actix/actix-web-httpauth" }
 actix-rt = "1.1.1"
-actix-multipart = "0.3.0"
 actix-service = "2.0.2"
 actix-identity = "0.3.1"
 actix-session = "0.4.1"
@@ -33,6 +32,7 @@ uuid = { version = "0.8.2", features = ["serde", "v4"] }
 rand = "0.8.4"
 regex = "1.5.4"
 env_logger = "0.9.0"
+strum = { version = "0.25", features = ["derive"] }
 
 # templating
 tera = "1.15.0"

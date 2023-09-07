@@ -27,6 +27,9 @@ use crate::handlers::{
     // role
     role_by_id,
 
+    // capability
+    capability_search,
+
     // organization
     organization_by_id,
 
@@ -47,6 +50,8 @@ use crate::handlers::{
 
 };
 
+use super::capability_search;
+
 pub fn configure_services(config: &mut web::ServiceConfig) {
     config.service(index);
     config.service(raw_index);
@@ -61,6 +66,9 @@ pub fn configure_services(config: &mut web::ServiceConfig) {
 
     // role
     config.service(role_by_id);
+
+    // capability
+    config.service(capability_search);
 
     // organization
     config.service(organization_by_id);

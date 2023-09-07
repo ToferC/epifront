@@ -14,6 +14,7 @@ pub mod org_tier;
 pub mod publication;
 pub mod work;
 pub mod task;
+pub mod capability;
 
 pub use authentication_hander::*;
 pub use base::{index, raw_index};
@@ -31,3 +32,4 @@ pub use org_tier::*;
 pub use publication::*;
 pub use work::*;
 pub use task::*;
+pub use capability::*;

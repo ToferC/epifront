@@ -27,3 +27,9 @@ pub struct PasswordForm {
 pub struct DeleteForm {
     pub verify: String,
 }
+
+#[derive(Deserialize, Debug)]
+pub struct CapabilityForm {
+    pub name: String,
+    pub level: String
+}
