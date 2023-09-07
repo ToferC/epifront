@@ -50,8 +50,6 @@ use crate::handlers::{
 
 };
 
-use super::capability_search;
-
 pub fn configure_services(config: &mut web::ServiceConfig) {
     config.service(index);
     config.service(raw_index);

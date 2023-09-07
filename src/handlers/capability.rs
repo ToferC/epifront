@@ -1,14 +1,16 @@
 use actix_session::UserSession;
-use actix_web::{HttpRequest, HttpResponse, Responder, get, web, ResponseError};
+use actix_web::{HttpRequest, HttpResponse, Responder, post, web, ResponseError};
 use actix_identity::Identity;
 use crate::{AppData, generate_basic_context};
+use crate::graphql::get_capability_by_name_and_level;
+
 
 use super::CapabilityForm;
 
 #[post("/{lang}/capability_search")]
 pub async fn capability_search(
     web::Path(lang): web::Path<String>,
-    _data: web::Data<AppData>,
+    data: web::Data<AppData>,
     req: HttpRequest, 
     form: web::Form<CapabilityForm>,
     id: Identity,
@@ -28,15 +30,16 @@ pub async fn capability_search(
     };
     
     // query graphql API
-    let results = graphql::capability_search(
+    let results = get_capability_by_name_and_level(
         form.name.to_lowercase().trim().to_string(),
         form.level.to_uppercase().to_string(),
+        bearer,
     )
     .expect("Unable to find capabilities");
              
-    ctx.insert("capabilities", &results.capability_search_results);
-    ctx.insert("name", name);
-    ctx.insert("level", level);
+    ctx.insert("capabilities", &results.capabilities_by_name_and_level);
+    ctx.insert("name", &form.name.to_owned());
+    ctx.insert("level", &form.level.to_owned());
 
     let rendered = data.tmpl.render("capability/capability_search_results.html", &ctx).unwrap();
     HttpResponse::Ok()

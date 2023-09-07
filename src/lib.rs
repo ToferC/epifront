@@ -13,6 +13,10 @@ use actix_session::Session;
 use rand::{thread_rng, Rng};
 use rand::distributions::Alphanumeric;
 
+extern crate strum;
+#[macro_use]
+extern crate strum_macros;
+
 const APP_NAME: &str = "Epifront";
 
 #[derive(Clone, Debug)]

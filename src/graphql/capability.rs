@@ -7,7 +7,7 @@ use chrono::NaiveDateTime;
 
 type UUID = String;
 
-#[derive(Debug, PartialEq, Display)]
+#[derive(Debug, PartialEq, Display, EnumString)]
 #[strum(serialize_all = "SCREAMING_SNAKE_CASE")]
 /// Enums for Capability
 pub enum CapabilityLevel {
@@ -26,13 +26,13 @@ pub enum CapabilityLevel {
 )]
 pub struct CapabilityByNameAndLevel;
 
-pub fn get_capability_by_name_and_level(name: String, level: CapabilityLevel, bearer: String) -> Result<capability_by_name_and_level::ResponseData, Box<dyn Error>> {
+pub fn get_capability_by_name_and_level(name: String, level: String, bearer: String) -> Result<capability_by_name_and_level::ResponseData, Box<dyn Error>> {
 
     let level_enum: CapabilityLevel;
 
     let request_body = CapabilityByNameAndLevel::build_query(capability_by_name_and_level::Variables {
         name,
-        level,
+        CapabilityLevel::from_str(level),
     });
 
     let client = reqwest::blocking::Client::new();
