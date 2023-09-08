@@ -1,4 +1,6 @@
-use serde::{Deserialize};
+use serde::{Deserialize, Serialize};
+
+use crate::graphql::capability_by_name_and_level::CapabilityLevel;
 
 #[derive(Deserialize, Debug)]
 pub struct LoginForm {
@@ -28,8 +30,8 @@ pub struct DeleteForm {
     pub verify: String,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Serialize)]
 pub struct CapabilityForm {
     pub name: String,
-    pub level: String
+    pub level: String,
 }

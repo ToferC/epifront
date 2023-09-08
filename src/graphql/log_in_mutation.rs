@@ -2,7 +2,6 @@ use graphql_client::{GraphQLQuery, Response};
 use serde::{Serialize, Deserialize};
 use std::error::Error;
 use reqwest;
-use uuid::Uuid;
 
 use crate::graphql::log_in_mutation;
 use crate::graphql::log_in::LoginQuery;

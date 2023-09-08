@@ -24,7 +24,7 @@ pub async fn capability_search(
     };
 
     // validate form has data or return to index
-    if form.name.is_empty() || form.level.is_empty() {
+    if form.name.is_empty() {
         println!("Form is empty");
         return HttpResponse::Found().header("Location", format!("/{}/", &lang)).finish()
     };
@@ -32,14 +32,14 @@ pub async fn capability_search(
     // query graphql API
     let results = get_capability_by_name_and_level(
         form.name.to_lowercase().trim().to_string(),
-        form.level.to_uppercase().to_string(),
-        bearer,
+        form.level.clone(),
+        bearer.clone(),
     )
     .expect("Unable to find capabilities");
              
     ctx.insert("capabilities", &results.capabilities_by_name_and_level);
     ctx.insert("name", &form.name.to_owned());
-    ctx.insert("level", &form.level.to_owned());
+    ctx.insert("level", &form.level);
 
     let rendered = data.tmpl.render("capability/capability_search_results.html", &ctx).unwrap();
     HttpResponse::Ok()

@@ -2,11 +2,11 @@ use graphql_client::{GraphQLQuery, Response};
 use serde::{Serialize, Deserialize};
 use std::error::Error;
 use reqwest;
-use strum::EnumString;
-use chrono::NaiveDateTime;
 
 type UUID = String;
+use crate::graphql::capability_by_name_and_level::CapabilityLevel;
 
+/*
 #[derive(Debug, PartialEq, Display, EnumString)]
 #[strum(serialize_all = "SCREAMING_SNAKE_CASE")]
 /// Enums for Capability
@@ -17,22 +17,21 @@ pub enum CapabilityLevel {
     Expert,
     Specialist
 }
+*/
 
-#[derive(GraphQLQuery, Serialize, Deserialize)]
+#[derive(GraphQLQuery, Serialize, Deserialize, Clone, Copy)]
 #[graphql(
     schema_path = "schema.graphql",
     query_path = "queries/capabilities/capability_by_name_and_level.graphql",
-    response_derives = "Debug, Serialize, PartialEq"
+    response_derives = "Debug, Serialize, PartialEq, Deserialize"
 )]
 pub struct CapabilityByNameAndLevel;
 
 pub fn get_capability_by_name_and_level(name: String, level: String, bearer: String) -> Result<capability_by_name_and_level::ResponseData, Box<dyn Error>> {
 
-    let level_enum: CapabilityLevel;
-
     let request_body = CapabilityByNameAndLevel::build_query(capability_by_name_and_level::Variables {
         name,
-        CapabilityLevel::from_str(level),
+        level: level,
     });
 
     let client = reqwest::blocking::Client::new();
