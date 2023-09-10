@@ -15,14 +15,16 @@
     <h2>Matches</h2>
     
         {% for capability in capabilities %}
-            <h2><a href="/{{lang}}/person/{{capability.person.id}}">{{ capability.person.givenName }} {{ capability.person.familyName }}</a></h2>
+            <h3><a href="/{{lang}}/person/{{capability.person.id}}">{{ capability.person.givenName }} {{ capability.person.familyName }}</a></h3>
+            <ul>Phone: {{ capability.person.phone }}</ul>
+            <ul>Email: {{ capability.person.email }}</ul>
             <br>
-            <h3>Roles</h3>
+            <ul>Current Role: 
             {% for role in capability.person.activeRoles %}
                 <li><strong>{{ role.titleEnglish }}</strong> - {{ role.hrGroup }}-{{ role.hrLevel }}</li>
-            {% endfor %}
+            {% endfor %}</ul>
             <br>
-            <h3>All Capabilities</h3>
+            <h4>Capabilities</h4>
             {% for cap in capability.person.capabilities %}
                 <li>{{ cap.nameEn }} ({{ cap.domain }}) - {{ cap.validatedLevel }}</li>
             {% endfor %}

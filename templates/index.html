@@ -17,7 +17,6 @@
 
             <hr>
             <h3>Search Capability</h3>
-            <form name="CapabilityForm" id="capabilityForm">
                 <div class="input-group">
 
                     <input id="capabilityName" class="form-control" type="text" placeholder="Enter name here" aria-label="Capability Name">
@@ -32,13 +31,9 @@
                     </select>
                     
                     <button class="btn btn-dark" 
-                        id="capabilitySearchButton"
-                        data-callback='onSubmit' 
-                        data-action='submit' type=submit>Submit
+                        id="capabilitySearchButton">Submit
                     </button>
                 </div>
-
-            </form>
                 
         </div>
 {% endblock content %}
@@ -58,9 +53,7 @@
         var capabilityName = document.getElementById("capabilityName").value;
         var capabilityLevel = document.getElementById("levelSelect").value;
 
-        alert('/{{ lang }}/capability_search/'+capabilityName+"/"+capabilityLevel);
-
-        window.location.href = '/{{ lang }}/capability_search/'+capabilityName+'/'+capabilityLevel;
+        window.location.href = "/{{ lang }}/capability_search/"+capabilityName+"/"+capabilityLevel;
     };
 
 </script>
