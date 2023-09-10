@@ -1,13 +1,24 @@
 hello-world = Hello World
-welcome-to = Welcome to Data Docs
+welcome-to = Welcome to the Public Health Workforce Analytics MVP
 
 ## General Section
 
-epicenter = Epicenter
--app-name = Epicenter
+epicenter = Workforce Analytics
+-app-name = Workforce Analytics
 app-description = { -app-name } is a learning project and experiment in workforce analytics.
-app-mvp = Epicenter MVP
+app-mvp = Workforce Analytics MVP
 -user-support-email = usersupport@intersectional-data.ca
+
+## Organization
+organization = Organization
+org_tier = Organization Tier
+team = Team
+work = Work
+affiliation = Affiliation
+person = Person
+publication = Publication
+role = Role
+task = Task
 
 ## Base & Navbar
 button-explore-demo-data = Explore demonstration data
@@ -20,9 +31,9 @@ login = Log in
 register = Register
 
 ## Footer
-footer-1 = Please note that this work is a learning project and experiment in using work documentation as native data.
-available-licence = The Data Docs project is available on GitHub under an MIT licence here:
-developed-by = Developed by ToferC 2022
+footer-1 = Please note that this work is a learning project and experiment in developing actionable workforce analytics.
+available-licence = The Public Health Workforce Analytics project is available on GitHub under an MIT licence here:
+developed-by = Developed by ToferC 2023
 
 ## Login Page
 email-address = Email address
@@ -127,7 +138,6 @@ communities = Communities
 user = User
 active-users = Active users on { -app-name }
 email = Email
-role = Role
 link = Link
 
 ## Email Verification

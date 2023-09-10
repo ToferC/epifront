@@ -41,5 +41,21 @@ query RoleById($id:UUID!) {
       domain
       requiredLevel
     }
+    findMatches {
+      id
+      givenName
+      familyName
+      activeRoles {
+        id
+        hrGroup
+        hrLevel
+        titleEnglish
+      }
+      capabilities {
+        nameEn
+        domain
+        validatedLevel
+      }
+    }
   }
 }

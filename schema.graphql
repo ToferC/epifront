@@ -194,7 +194,7 @@ type Query {
   # Accepts a String "name" and a CapabilityLevel and returns matches against both
   capabilitiesByNameAndLevel(
     name: String!
-    level: CapabilityLevel!
+    level: String!
   ): [Capability!]!
 
   # Return a count of the number of people who have a capability at each level of the capability

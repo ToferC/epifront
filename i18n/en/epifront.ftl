@@ -9,6 +9,17 @@ app-description = { -app-name } is a learning project and experiment in workforc
 app-mvp = Workforce Analytics MVP
 -user-support-email = usersupport@intersectional-data.ca
 
+## Organization
+organization = Organization
+org_tier = Organization Tier
+team = Team
+work = Work
+affiliation = Affiliation
+person = Person
+publication = Publication
+role = Role
+task = Task
+
 ## Base & Navbar
 button-explore-demo-data = Explore demonstration data
 about = About the Project
@@ -127,7 +138,6 @@ communities = Communities
 user = User
 active-users = Active users on { -app-name }
 email = Email
-role = Role
 link = Link
 
 ## Email Verification

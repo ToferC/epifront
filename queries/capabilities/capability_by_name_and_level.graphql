@@ -1,4 +1,4 @@
-query CapabilityByNameAndLevel($name: String!, $level: CapabilityLevel!) {
+query CapabilityByNameAndLevel($name: String!, $level: String!) {
   capabilitiesByNameAndLevel(name: $name, level:$level) {
     id
     nameEn

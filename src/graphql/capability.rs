@@ -2,9 +2,9 @@ use graphql_client::{GraphQLQuery, Response};
 use serde::{Serialize, Deserialize};
 use std::error::Error;
 use reqwest;
+use actix_web::{HttpRequest, HttpResponse, Responder, post, web, ResponseError};
 
 type UUID = String;
-use crate::graphql::capability_by_name_and_level::CapabilityLevel;
 
 /*
 #[derive(Debug, PartialEq, Display, EnumString)]
@@ -31,7 +31,7 @@ pub fn get_capability_by_name_and_level(name: String, level: String, bearer: Str
 
     let request_body = CapabilityByNameAndLevel::build_query(capability_by_name_and_level::Variables {
         name,
-        level: level,
+        level,
     });
 
     let client = reqwest::blocking::Client::new();

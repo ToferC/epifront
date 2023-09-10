@@ -17,12 +17,12 @@
 
             <hr>
             <h3>Search Capability</h3>
-            <form name="CapabilityForm" id="capabilityForm" action=/{{ lang }}/capability_search method=POST>
+            <form name="CapabilityForm" id="capabilityForm">
                 <div class="input-group">
 
-                    <input id="name" class="form-control" type="text" placeholder="Enter name here" aria-label="Capability Name">
+                    <input id="capabilityName" class="form-control" type="text" placeholder="Enter name here" aria-label="Capability Name">
     
-                    <select class="custom-select" id="inputGroupSelect">
+                    <select class="custom-select" id="levelSelect">
                         <option selected>Choose Level</option>
                         <option value="DESIRED">Desired</option>
                         <option value="NOVICE">Novice</option>
@@ -32,6 +32,7 @@
                     </select>
                     
                     <button class="btn btn-dark" 
+                        id="capabilitySearchButton"
                         data-callback='onSubmit' 
                         data-action='submit' type=submit>Submit
                     </button>
@@ -49,14 +50,18 @@
     function peopleSearch() {  
         var result = document.getElementById("personSearchbar").value;  
         window.location.href = '/{{ lang }}/person_by_name/'+result;
-    }
+    };
 
-    document.getElementById("capabilitySearch").addEventListener("click", capabilitySearch);
+    document.getElementById("capabilitySearchButton").addEventListener("click", capabilitySearch);
 
     function capabilitySearch() {  
-        var result = document.getElementById("capabilitySearchbar").value;  
-        window.location.href = '/{{ lang }}/person_by_name/'+result;
-    }
+        var capabilityName = document.getElementById("capabilityName").value;
+        var capabilityLevel = document.getElementById("levelSelect").value;
+
+        alert('/{{ lang }}/capability_search/'+capabilityName+"/"+capabilityLevel);
+
+        window.location.href = '/{{ lang }}/capability_search/'+capabilityName+'/'+capabilityLevel;
+    };
 
 </script>
 

@@ -1,20 +1,18 @@
 use actix_session::UserSession;
-use actix_web::{HttpRequest, HttpResponse, Responder, post, web, ResponseError};
+use actix_web::{HttpRequest, HttpResponse, Responder, get, web, ResponseError};
 use actix_identity::Identity;
 use crate::{AppData, generate_basic_context};
 use crate::graphql::get_capability_by_name_and_level;
 
-
-use super::CapabilityForm;
-
-#[post("/{lang}/capability_search")]
+#[get("/{lang}/capability_search/{name}/{level}")]
 pub async fn capability_search(
-    web::Path(lang): web::Path<String>,
+    web::Path((lang, name, level)): web::Path<(String, String, String)>,
     data: web::Data<AppData>,
     req: HttpRequest, 
-    form: web::Form<CapabilityForm>,
     id: Identity,
 ) -> impl Responder {
+
+    println!("CALL CAPABILITY SEARCH");
 
     let (mut ctx, user, lang, path) = generate_basic_context(id, &lang, req.uri().path());
 
@@ -22,24 +20,20 @@ pub async fn capability_search(
         Some(s) => s,
         None => "".to_string(),
     };
-
-    // validate form has data or return to index
-    if form.name.is_empty() {
-        println!("Form is empty");
-        return HttpResponse::Found().header("Location", format!("/{}/", &lang)).finish()
-    };
     
     // query graphql API
     let results = get_capability_by_name_and_level(
-        form.name.to_lowercase().trim().to_string(),
-        form.level.clone(),
+        name.to_lowercase().trim().to_string(),
+        level.clone(),
         bearer.clone(),
     )
     .expect("Unable to find capabilities");
+
+    println!("{:?}", &results);
              
     ctx.insert("capabilities", &results.capabilities_by_name_and_level);
-    ctx.insert("name", &form.name.to_owned());
-    ctx.insert("level", &form.level);
+    ctx.insert("name", &name.to_owned());
+    ctx.insert("level", &level);
 
     let rendered = data.tmpl.render("capability/capability_search_results.html", &ctx).unwrap();
     HttpResponse::Ok()
