@@ -8,7 +8,8 @@
 
 <div class="col m-md-2 m-1">
 
-    <h1>Capability Search for {{ name }} and {{ level }}</h1>
+    <h1>Capability Search</h1>
+    <h2>{{ name }} and {{ level }}</h2>
 
     <hr>
 
@@ -16,12 +17,11 @@
     
         {% for capability in capabilities %}
             <h3><a href="/{{lang}}/person/{{capability.person.id}}">{{ capability.person.givenName }} {{ capability.person.familyName }}</a></h3>
-            <ul>Phone: {{ capability.person.phone }}</ul>
-            <ul>Email: {{ capability.person.email }}</ul>
-            <br>
-            <ul>Current Role: 
+            <li>Phone: {{ capability.person.phone }}</li>
+            <li>Email: {{ capability.person.email }}</li>
+            <li>Current Role: 
             {% for role in capability.person.activeRoles %}
-                <li><strong>{{ role.titleEnglish }}</strong> - {{ role.hrGroup }}-{{ role.hrLevel }}</li>
+                <strong>{{ role.titleEnglish }}</strong> - {{ role.hrGroup }}-{{ role.hrLevel }}
             {% endfor %}</ul>
             <br>
             <h4>Capabilities</h4>

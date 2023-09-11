@@ -45,6 +45,8 @@ query RoleById($id:UUID!) {
       id
       givenName
       familyName
+      phone
+      email
       activeRoles {
         id
         hrGroup

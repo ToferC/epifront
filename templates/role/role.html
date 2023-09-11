@@ -20,6 +20,15 @@
         <li>{{ role.person.phone }}</li>
     {% else %}
         <h3>VACANT</h3>
+        <h3>Requirements</h3>
+        {% if role.requirements %}
+            {% for req in role.requirements %}
+                <li>Requirement: {{ req.nameEn }} ({{ req.domain }}) - {{ req.requiredLevel }}</li>
+            {% endfor %}
+        {% else %}
+            <p>No Requirements</p>
+        {% endif %}
+        <hr>
     {% endif %}
 
     {% if role.person %}
@@ -54,7 +63,21 @@
     {% endif %}
     {% else %}
         <h2>Potential Matches</h2>
-        {% for person in findMatches%}
+        <hr>
+        {% for person in role.findMatches%}
+            <h3><a href="/{{lang}}/person/{{person.id}}">{{ person.givenName }} {{ person.familyName }}</a></h3>
+            <li>Phone: {{ person.phone }}</li>
+            <li>Email: {{ person.email }}</li>
+            <li>Current Role: 
+            {% for role in person.activeRoles %}
+                {{ role.titleEnglish }} - {{ role.hrGroup }}-{{ role.hrLevel }}
+            {% endfor %}</li>
+            <br>
+            <h5>Capabilities</h5>
+            {% for cap in person.capabilities %}
+                <li>{{ cap.nameEn }} ({{ cap.domain }}) - {{ cap.validatedLevel }}</li>
+            {% endfor %}
+            <hr>
 
         {% endfor %}
     {% endif %}
