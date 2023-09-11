@@ -23,7 +23,7 @@
         <h3>Requirements</h3>
         {% if role.requirements %}
             {% for req in role.requirements %}
-                <li>Requirement: {{ req.nameEn }} ({{ req.domain }}) - {{ req.requiredLevel }}</li>
+                <li>{{ req.nameEn }} ({{ req.domain }}) - {{ req.requiredLevel }}</li>
             {% endfor %}
         {% else %}
             <p>No Requirements</p>

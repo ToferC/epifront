@@ -29,6 +29,12 @@ query TaskById($id:UUID!) {
           id
           familyName
           givenName
+          email
+          phone
+          organization {
+            id
+            nameEn
+          }
       	}
     	}
     }
@@ -39,6 +45,12 @@ query TaskById($id:UUID!) {
         id
         givenName
         familyName
+        email
+        phone
+        activeRoles {
+          id
+          titleEnglish
+        }
       }
       team {
         id
