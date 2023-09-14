@@ -57,6 +57,8 @@ async fn main() -> std::io::Result<()> {
         tmpl: tera,
     });
 
+    println!("Serving on http://{}:{}", &host, &port);
+
     HttpServer::new(move || {
         let generated = generate();
 
